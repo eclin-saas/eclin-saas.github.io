@@ -8,7 +8,6 @@ import {
   Menu,
   Moon,
   PieChart,
-  Quote,
   ShieldCheck,
   Sparkles,
   Sun,
@@ -141,55 +140,179 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
     </section>
 
-    <section id="recursos" class="section">
+    <section id="recursos" class="section resources-section">
       <div class="container">
-        <div class="section-heading split-heading">
+        <div class="section-heading resources-heading">
           <div>
             <span class="section-kicker">Um sistema, uma rotina</span>
-            <h2>Menos abas abertas. Mais contexto para decidir.</h2>
+            <h2>As partes da clínica finalmente conversam entre si.</h2>
           </div>
-          <p>O eClin conecta as áreas que normalmente ficam espalhadas entre agenda, planilhas, mensagens e sistemas diferentes.</p>
+          <p>
+            Em vez de espalhar contexto entre agenda, planilhas, mensagens e prontuários,
+            o eClin organiza a operação em um único fluxo.
+          </p>
         </div>
 
-        <div class="feature-grid">
-          <article class="feature-card feature-large">
-            <div class="icon-box"><i data-lucide="calendar"></i></div>
-            <div>
-              <span class="feature-number">01</span>
-              <h3>Agenda que entende a operação</h3>
-              <p>Organize profissionais, salas, disponibilidade e atendimentos em uma visão preparada para a rotina clínica.</p>
+        <div class="resource-stack">
+          <article class="resource-row">
+            <div class="resource-copy">
+              <div class="resource-meta">
+                <span class="resource-index">01</span>
+                <span class="resource-label">Operação</span>
+              </div>
+              <h3>Agenda que trabalha como parte da clínica.</h3>
+              <p>
+                Disponibilidade, profissionais, salas, confirmação e contexto do atendimento
+                ficam próximos — sem transformar o agendamento em uma planilha visual.
+              </p>
+              <ul class="resource-points">
+                <li><i data-lucide="check"></i> Disponibilidade por profissional</li>
+                <li><i data-lucide="check"></i> Salas e requisitos do atendimento</li>
+                <li><i data-lucide="check"></i> Confirmação e acompanhamento da agenda</li>
+              </ul>
+            </div>
+
+            <div class="resource-visual resource-agenda" aria-label="Ilustração da agenda do eClin">
+              <div class="visual-toolbar">
+                <div>
+                  <small>Agenda</small>
+                  <strong>Terça, 24 de agosto</strong>
+                </div>
+                <span>Hoje</span>
+              </div>
+              <div class="agenda-board">
+                <div class="agenda-times">
+                  <span>08:00</span><span>09:00</span><span>10:00</span><span>11:00</span>
+                </div>
+                <div class="agenda-columns">
+                  <div class="agenda-column">
+                    <small>Sala 01</small>
+                    <div class="appointment appointment-blue">
+                      <b>08:30</b><strong>Ana Martins</strong><span>Psicologia</span>
+                    </div>
+                    <div class="appointment appointment-green">
+                      <b>10:00</b><strong>Lucas Rocha</strong><span>Fonoaudiologia</span>
+                    </div>
+                  </div>
+                  <div class="agenda-column">
+                    <small>Sala 02</small>
+                    <div class="appointment appointment-violet offset">
+                      <b>09:00</b><strong>Marina Costa</strong><span>Fisioterapia</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="feature-card">
-            <div class="icon-box green"><i data-lucide="file-text"></i></div>
-            <span class="feature-number">02</span>
-            <h3>Prontuário conectado</h3>
-            <p>Histórico clínico organizado para acompanhar o paciente sem perder o contexto entre atendimentos.</p>
-          </article>
+          <article class="resource-row reverse">
+            <div class="resource-copy">
+              <div class="resource-meta">
+                <span class="resource-index">02</span>
+                <span class="resource-label">Contexto clínico</span>
+              </div>
+              <h3>Prontuário organizado como uma história, não como um formulário.</h3>
+              <p>
+                Evoluções, anamnese e informações importantes permanecem acessíveis no
+                contexto do paciente, permitindo acompanhar a continuidade do cuidado.
+              </p>
+              <ul class="resource-points">
+                <li><i data-lucide="check"></i> Linha do tempo clínica</li>
+                <li><i data-lucide="check"></i> Evoluções por atendimento</li>
+                <li><i data-lucide="check"></i> Histórico centralizado do paciente</li>
+              </ul>
+            </div>
 
-          <article class="feature-card">
-            <div class="icon-box violet"><i data-lucide="users"></i></div>
-            <span class="feature-number">03</span>
-            <h3>Equipe e acessos</h3>
-            <p>Convide usuários e organize funções para que cada pessoa tenha um acesso coerente com sua responsabilidade.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="icon-box amber"><i data-lucide="pie-chart"></i></div>
-            <span class="feature-number">04</span>
-            <h3>Financeiro no mesmo fluxo</h3>
-            <p>Acompanhe pagamentos e informações financeiras sem separar a gestão da rotina operacional.</p>
-          </article>
-
-          <article class="feature-card feature-large dark-feature">
-            <div class="icon-box"><i data-lucide="shield-check"></i></div>
-            <div>
-              <span class="feature-number">05</span>
-              <h3>Privacidade desde a estrutura</h3>
-              <p>Dados separados por organização e uma base de permissões preparada para evoluir junto com as responsabilidades da equipe.</p>
+            <div class="resource-visual resource-record" aria-label="Ilustração de prontuário do eClin">
+              <div class="patient-header">
+                <div class="patient-avatar">AM</div>
+                <div>
+                  <strong>Ana Martins</strong>
+                  <span>Paciente desde 2025</span>
+                </div>
+                <b>Ativo</b>
+              </div>
+              <div class="timeline">
+                <div class="timeline-item current">
+                  <i></i>
+                  <div>
+                    <small>Hoje · Psicologia</small>
+                    <strong>Evolução clínica</strong>
+                    <p>Boa adesão ao plano terapêutico e progressão consistente nas últimas semanas.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <i></i>
+                  <div>
+                    <small>18 ago · Fonoaudiologia</small>
+                    <strong>Acompanhamento</strong>
+                    <p>Registro compartilhado no histórico longitudinal do paciente.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <i></i>
+                  <div>
+                    <small>11 ago · Avaliação inicial</small>
+                    <strong>Anamnese</strong>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
+
+          <article class="resource-row">
+            <div class="resource-copy">
+              <div class="resource-meta">
+                <span class="resource-index">03</span>
+                <span class="resource-label">Equipe</span>
+              </div>
+              <h3>Cada pessoa entra no eClin com uma responsabilidade clara.</h3>
+              <p>
+                Convide usuários, organize cargos e mantenha a estrutura preparada para
+                separar o que é gestão, recepção, atendimento clínico e financeiro.
+              </p>
+              <ul class="resource-points">
+                <li><i data-lucide="check"></i> Proprietário e administradores</li>
+                <li><i data-lucide="check"></i> Recepção e profissionais</li>
+                <li><i data-lucide="check"></i> Gestão financeira e acessos</li>
+              </ul>
+            </div>
+
+            <div class="resource-visual resource-team" aria-label="Ilustração de gestão da equipe">
+              <div class="team-head">
+                <div>
+                  <small>Equipe</small>
+                  <strong>3 de 3 usuários</strong>
+                </div>
+                <span>Trial</span>
+              </div>
+              <div class="seat-meter"><i></i><i></i><i></i></div>
+              <div class="team-list">
+                <div><span class="avatar blue">JS</span><p><strong>João Silva</strong><small>Proprietário</small></p><b>Ativo</b></div>
+                <div><span class="avatar green">MR</span><p><strong>Marina Rocha</strong><small>Recepção</small></p><b>Ativo</b></div>
+                <div><span class="avatar violet">AC</span><p><strong>Ana Costa</strong><small>Profissional</small></p><b>Ativo</b></div>
+              </div>
+            </div>
+          </article>
+
+          <div class="resource-footer-grid">
+            <article>
+              <div class="resource-footer-icon amber"><i data-lucide="pie-chart"></i></div>
+              <div>
+                <span>Financeiro</span>
+                <h3>Informação financeira perto da operação.</h3>
+                <p>Pagamentos, recebimentos e visão gerencial sem criar um segundo fluxo paralelo.</p>
+              </div>
+            </article>
+            <article>
+              <div class="resource-footer-icon"><i data-lucide="shield-check"></i></div>
+              <div>
+                <span>Privacidade</span>
+                <h3>Separação por organização desde a base.</h3>
+                <p>Estrutura preparada para permissões e responsabilidades diferentes dentro da equipe.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -302,8 +425,7 @@ createIcons({
     Menu,
     Moon,
     PieChart,
-    Quote,
-    ShieldCheck,
+      ShieldCheck,
     Sparkles,
     Sun,
     Users,
