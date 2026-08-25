@@ -1,187 +1,352 @@
 import './style.css'
-import logo from "./assets/eclin.svg"
-import { createIcons, Calendar, FileText, PieChart, ShieldCheck, ArrowRight, Quote, Check, Sun, Moon } from 'lucide';
+import logo from './assets/eclin.svg'
+import {
+  ArrowRight,
+  Calendar,
+  Check,
+  FileText,
+  Menu,
+  Moon,
+  PieChart,
+  Quote,
+  ShieldCheck,
+  Sparkles,
+  Sun,
+  Users,
+  X,
+  createIcons,
+} from 'lucide'
+
+const APP_URL = 'https://app.eclin.xyz'
+const LOGIN_URL = `${APP_URL}/login`
+const REGISTER_URL = `${APP_URL}/register`
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<nav class="navbar">
-  <div class="container nav-container">
-    <div class="logo">
-      <img src="${logo}" width="100">
-    </div>
-    <div class="nav-links">
-      <a href="#ferramentas" class="nav-link">Recursos</a>
-      <a href="#depoimentos" class="nav-link">Depoimentos</a>
-      <a href="#planos" class="nav-link">Planos</a>
-      <button id="theme-toggle" class="icon-btn" aria-label="Mudar tema">
-        <i data-lucide="moon" class="moon-icon"></i>
-        <i data-lucide="sun" class="sun-icon"></i>
-      </button>
-      <button class="btn btn-outline btn-sm">Entrar</button>
-    </div>
-  </div>
-</nav>
+  <nav class="navbar" aria-label="Navegação principal">
+    <div class="container nav-container">
+      <a class="logo" href="#inicio" aria-label="eClin — início">
+        <img src="${logo}" alt="eClin" />
+      </a>
 
-<main>
-  <section class="hero container">
-    <div class="hero-content">
-      <span class="badge">Especial para Clínicas Interdisciplinares</span>
-      <h1 class="hero-title">
-        Gestão integrada para quem cuida de <span class="text-primary">pessoas.</span>
-      </h1>
-      <p class="hero-subtitle">
-        Conecte psicólogos, médicos, fonoaudiólogos e toda a sua equipe em um único prontuário inteligente. Menos burocracia, mais tempo para seus pacientes.
-      </p>
-      <div class="hero-actions">
-        <button class="btn btn-primary">
-          Testar Gratuitamente
-          <i data-lucide="arrow-right" class="icon-sm"></i>
+      <div class="nav-links" id="desktop-nav">
+        <a href="#recursos" class="nav-link">Recursos</a>
+        <a href="#como-funciona" class="nav-link">Como funciona</a>
+        <a href="#planos" class="nav-link">Planos</a>
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="Alternar tema">
+          <i data-lucide="moon" class="moon-icon"></i>
+          <i data-lucide="sun" class="sun-icon"></i>
+        </button>
+        <a class="btn btn-ghost btn-sm" href="${LOGIN_URL}">Entrar</a>
+        <a class="btn btn-primary btn-sm" href="${REGISTER_URL}">Começar grátis</a>
+      </div>
+
+      <div class="mobile-actions">
+        <button id="mobile-theme-toggle" class="icon-btn" type="button" aria-label="Alternar tema">
+          <i data-lucide="moon" class="moon-icon"></i>
+          <i data-lucide="sun" class="sun-icon"></i>
+        </button>
+        <button id="menu-toggle" class="icon-btn" type="button" aria-label="Abrir menu" aria-expanded="false">
+          <i data-lucide="menu" class="menu-icon"></i>
+          <i data-lucide="x" class="close-icon"></i>
         </button>
       </div>
     </div>
-  </section>
 
-  <section id="ferramentas" class="section bg-secondary">
-    <div class="container">
-      <div class="section-header">
-        <h2>Tudo o que sua clínica precisa</h2>
-        <p>Um ecossistema completo desenhado para a realidade do atendimento multidisciplinar.</p>
-      </div>
-      
-      <div class="grid features-grid">
-        <div class="card feature-card">
-          <div class="icon-box bg-blue"><i data-lucide="calendar"></i></div>
-          <h3>Agendamento Inteligente</h3>
-          <p>Chega de conflitos. O sistema cruza as agendas de diferentes especialistas automaticamente para facilitar o atendimento do paciente no mesmo dia.</p>
-        </div>
-
-        <div class="card feature-card">
-          <div class="icon-box bg-green"><i data-lucide="file-text"></i></div>
-          <h3>Prontuário Unificado</h3>
-          <p>Visão 360º do paciente. Evoluções de diferentes áreas (psicologia, fisioterapia, medicina) organizadas e acessíveis em uma única linha do tempo.</p>
-        </div>
-
-        <div class="card feature-card">
-          <div class="icon-box bg-blue"><i data-lucide="pie-chart"></i></div>
-          <h3>Gestão Financeira</h3>
-          <p>Controle de repasses por profissional, faturamento de convênios e fluxo de caixa simplificado para garantir a saúde do seu negócio.</p>
-        </div>
-
-        <div class="card feature-card">
-          <div class="icon-box bg-green"><i data-lucide="shield-check"></i></div>
-          <h3>Controle de Acessos</h3>
-          <p>Privacidade garantida (LGPD). Configure permissões para que cada profissional acesse apenas o que é pertinente ao seu conselho e função.</p>
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <div class="container mobile-menu-inner">
+        <a href="#recursos" class="mobile-link">Recursos</a>
+        <a href="#como-funciona" class="mobile-link">Como funciona</a>
+        <a href="#planos" class="mobile-link">Planos</a>
+        <div class="mobile-cta-row">
+          <a class="btn btn-outline w-full" href="${LOGIN_URL}">Entrar</a>
+          <a class="btn btn-primary w-full" href="${REGISTER_URL}">Começar grátis</a>
         </div>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <section id="depoimentos" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>O que nossos parceiros dizem</h2>
-        <p>Clínicas que transformaram suas rotinas com o eClin.</p>
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            eClin está em beta
+          </div>
+          <h1 class="hero-title">
+            A operação da sua clínica, <span>sem virar outra preocupação.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Agenda, pacientes, profissionais, prontuários e gestão em um único fluxo — pensado para clínicas e equipes multidisciplinares.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="${REGISTER_URL}">
+              Testar gratuitamente
+              <i data-lucide="arrow-right" class="icon-sm"></i>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#recursos">Conhecer recursos</a>
+          </div>
+          <div class="hero-proof" aria-label="Destaques do produto">
+            <span><i data-lucide="check"></i> Comece em minutos</span>
+            <span><i data-lucide="check"></i> Acesso por organização</span>
+            <span><i data-lucide="check"></i> Feito para equipes de saúde</span>
+          </div>
+        </div>
+
+        <div class="product-preview" aria-label="Prévia da interface do eClin">
+          <div class="preview-window">
+            <div class="preview-topbar">
+              <div class="preview-brand">
+                <span class="preview-logo-mark"></span>
+                <strong>eClin</strong>
+              </div>
+              <div class="preview-user"></div>
+            </div>
+            <div class="preview-body">
+              <aside class="preview-sidebar">
+                <span class="active"></span><span></span><span></span><span></span><span></span>
+              </aside>
+              <div class="preview-content">
+                <div class="preview-heading">
+                  <div><small>Hoje</small><strong>Visão geral</strong></div>
+                  <span class="preview-button">Novo atendimento</span>
+                </div>
+                <div class="preview-metrics">
+                  <div><small>Atendimentos</small><strong>08</strong><em>hoje</em></div>
+                  <div><small>Pacientes</small><strong>124</strong><em>ativos</em></div>
+                  <div><small>Equipe</small><strong>06</strong><em>profissionais</em></div>
+                </div>
+                <div class="preview-panel">
+                  <div class="preview-panel-head"><strong>Próximos atendimentos</strong><span></span></div>
+                  <div class="preview-row"><i></i><div><strong>Ana Martins</strong><small>09:00 · Psicologia</small></div><b>Confirmado</b></div>
+                  <div class="preview-row"><i></i><div><strong>Lucas Rocha</strong><small>10:30 · Fonoaudiologia</small></div><b>Confirmado</b></div>
+                  <div class="preview-row"><i></i><div><strong>Marina Costa</strong><small>13:00 · Fisioterapia</small></div><b class="muted">Pendente</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="grid testimonials-grid">
-        <div class="card testimonial-card">
-          <i data-lucide="quote" class="quote-icon"></i>
-          <p class="testimonial-text">"A comunicação entre a neuropediatria e as terapeutas melhorou 100%. Ter o histórico evolutivo de todos os profissionais num só lugar mudou nossa clínica."</p>
-          <div class="testimonial-author">
-            <strong>Dra. Amanda Silva</strong>
-            <span>Diretora Clínica, Espaço Desenvolver</span>
+    </section>
+
+    <section class="trust-strip" aria-label="Principais áreas do eClin">
+      <div class="container trust-grid">
+        <span>Agenda clínica</span>
+        <span>Prontuário eletrônico</span>
+        <span>Gestão de equipe</span>
+        <span>Financeiro</span>
+        <span>Relatórios</span>
+      </div>
+    </section>
+
+    <section id="recursos" class="section">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div>
+            <span class="section-kicker">Um sistema, uma rotina</span>
+            <h2>Menos abas abertas. Mais contexto para decidir.</h2>
           </div>
+          <p>O eClin conecta as áreas que normalmente ficam espalhadas entre agenda, planilhas, mensagens e sistemas diferentes.</p>
         </div>
 
-        <div class="card testimonial-card">
-          <i data-lucide="quote" class="quote-icon"></i>
-          <p class="testimonial-text">"Fazíamos o cálculo de repasse de 15 profissionais manualmente. Hoje o eClin faz isso em segundos no fim do mês. É libertador."</p>
-          <div class="testimonial-author">
-            <strong>Carlos Mendes</strong>
-            <span>Gestor Financeiro, Clínica Integrar</span>
-          </div>
+        <div class="feature-grid">
+          <article class="feature-card feature-large">
+            <div class="icon-box"><i data-lucide="calendar"></i></div>
+            <div>
+              <span class="feature-number">01</span>
+              <h3>Agenda que entende a operação</h3>
+              <p>Organize profissionais, salas, disponibilidade e atendimentos em uma visão preparada para a rotina clínica.</p>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="icon-box green"><i data-lucide="file-text"></i></div>
+            <span class="feature-number">02</span>
+            <h3>Prontuário conectado</h3>
+            <p>Histórico clínico organizado para acompanhar o paciente sem perder o contexto entre atendimentos.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="icon-box violet"><i data-lucide="users"></i></div>
+            <span class="feature-number">03</span>
+            <h3>Equipe e acessos</h3>
+            <p>Convide usuários e organize funções para que cada pessoa tenha um acesso coerente com sua responsabilidade.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="icon-box amber"><i data-lucide="pie-chart"></i></div>
+            <span class="feature-number">04</span>
+            <h3>Financeiro no mesmo fluxo</h3>
+            <p>Acompanhe pagamentos e informações financeiras sem separar a gestão da rotina operacional.</p>
+          </article>
+
+          <article class="feature-card feature-large dark-feature">
+            <div class="icon-box"><i data-lucide="shield-check"></i></div>
+            <div>
+              <span class="feature-number">05</span>
+              <h3>Privacidade desde a estrutura</h3>
+              <p>Dados separados por organização e uma base de permissões preparada para evoluir junto com as responsabilidades da equipe.</p>
+            </div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="section process-section">
+      <div class="container process-layout">
+        <div class="process-copy">
+          <span class="section-kicker">Comece sem complicação</span>
+          <h2>Da primeira configuração ao primeiro atendimento.</h2>
+          <p>O eClin foi desenhado para crescer com a clínica sem exigir uma implantação pesada para começar.</p>
+          <a class="text-link" href="${REGISTER_URL}">Criar minha conta <i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="process-steps">
+          <article><span>01</span><div><h3>Crie sua organização</h3><p>Cadastre a clínica e comece o período de teste.</p></div></article>
+          <article><span>02</span><div><h3>Organize sua equipe</h3><p>Cadastre profissionais e convide quem precisa acessar o sistema.</p></div></article>
+          <article><span>03</span><div><h3>Comece a operar</h3><p>Pacientes, agenda e atendimentos passam a compartilhar o mesmo contexto.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section story-section">
+      <div class="container story-card">
+        <div class="story-icon"><i data-lucide="sparkles"></i></div>
+        <blockquote>
+          “Software de clínica não precisa parecer software de 2009. O eClin está sendo construído para deixar a tecnologia em segundo plano e a rotina em primeiro.”
+        </blockquote>
+        <p>Uma plataforma em evolução contínua, construída a partir do fluxo real de atendimento.</p>
+      </div>
+    </section>
+
+    <section id="planos" class="section pricing-section">
+      <div class="container">
+        <div class="section-heading centered-heading">
+          <span class="section-kicker">Planos</span>
+          <h2>Comece no beta. Evolua quando precisar.</h2>
+          <p>Teste o eClin antes de escolher o plano definitivo para sua operação.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <div class="pricing-name">Consultório</div>
+            <div class="price">R$ 97 <span>/ mês</span></div>
+            <p>Para operações menores que querem centralizar a rotina.</p>
+            <ul>
+              <li><i data-lucide="check"></i> Até 3 usuários</li>
+              <li><i data-lucide="check"></i> Agenda e pacientes</li>
+              <li><i data-lucide="check"></i> Prontuário eletrônico</li>
+              <li><i data-lucide="check"></i> Gestão da equipe</li>
+            </ul>
+            <a class="btn btn-outline w-full" href="${REGISTER_URL}">Começar teste</a>
+          </article>
+
+          <article class="pricing-card featured-pricing">
+            <div class="pricing-badge">Para equipes</div>
+            <div class="pricing-name">Clínica</div>
+            <div class="price">R$ 247 <span>/ mês</span></div>
+            <p>Para clínicas que precisam crescer sem limitar o número de acessos.</p>
+            <ul>
+              <li><i data-lucide="check"></i> Usuários ilimitados</li>
+              <li><i data-lucide="check"></i> Todos os recursos do Consultório</li>
+              <li><i data-lucide="check"></i> Fluxos financeiros e relatórios</li>
+              <li><i data-lucide="check"></i> Estrutura preparada para equipes maiores</li>
+            </ul>
+            <a class="btn btn-primary w-full" href="${REGISTER_URL}">Começar teste</a>
+          </article>
+        </div>
+        <p class="pricing-note">Durante o beta, condições comerciais e recursos dos planos podem evoluir.</p>
+      </div>
+    </section>
+
+    <section class="final-cta section">
+      <div class="container final-cta-inner">
+        <div>
+          <span class="section-kicker light">Pronto para testar?</span>
+          <h2>Conheça o eClin com a sua própria rotina.</h2>
+          <p>Crie sua organização e explore o sistema no ambiente real do produto.</p>
+        </div>
+        <a class="btn btn-light btn-lg" href="${REGISTER_URL}">
+          Começar gratuitamente
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo footer-logo" href="#inicio"><img src="${logo}" alt="eClin" /></a>
+        <p>Gestão clínica para equipes que querem trabalhar com mais contexto e menos ruído.</p>
+      </div>
+      <div class="footer-links">
+        <div><strong>Produto</strong><a href="#recursos">Recursos</a><a href="#planos">Planos</a><a href="${LOGIN_URL}">Entrar</a></div>
+        <div><strong>eClin</strong><a href="mailto:contato@eclin.xyz">Contato</a><a href="mailto:suporte@eclin.xyz">Suporte</a></div>
       </div>
     </div>
-  </section>
-
-  <section id="planos" class="section bg-secondary">
-    <div class="container">
-      <div class="section-header">
-        <h2>Planos que crescem com você</h2>
-        <p>Sem taxas ocultas. Escolha o plano ideal para o tamanho da sua equipe.</p>
-      </div>
-      
-      <div class="grid pricing-grid">
-        <div class="card pricing-card">
-          <div class="pricing-header">
-            <h3>Consultório</h3>
-            <div class="price">R$ 97<span>/mês</span></div>
-            <p>Para profissionais autônomos ou duplas.</p>
-          </div>
-          <ul class="pricing-features">
-            <li><i data-lucide="check"></i> Até 2 profissionais</li>
-            <li><i data-lucide="check"></i> Prontuário eletrônico</li>
-            <li><i data-lucide="check"></i> Agenda inteligente</li>
-            <li class="disabled"><i data-lucide="check"></i> Controle de repasses</li>
-          </ul>
-          <button class="btn btn-outline w-full">Assinar Consultório</button>
-        </div>
-
-        <div class="card pricing-card popular">
-          <div class="popular-badge">Mais Escolhido</div>
-          <div class="pricing-header">
-            <h3>Clínica</h3>
-            <div class="price">R$ 247<span>/mês</span></div>
-            <p>Para clínicas interdisciplinares em expansão.</p>
-          </div>
-          <ul class="pricing-features">
-            <li><i data-lucide="check"></i> Até 10 profissionais</li>
-            <li><i data-lucide="check"></i> Tudo do plano anterior</li>
-            <li><i data-lucide="check"></i> Controle de repasses automático</li>
-            <li><i data-lucide="check"></i> Suporte prioritário via WhatsApp</li>
-          </ul>
-          <button class="btn btn-primary w-full">Assinar Clínica</button>
-        </div>
-      </div>
+    <div class="container footer-bottom">
+      <span>© 2026 eClin Software.</span>
+      <span>eclin.xyz</span>
     </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="logo">
-        <div class="logo-mark"></div>
-        eClin
-      </div>
-      <p>&copy; 2026 eClin Software. Transformando o atendimento interdisciplinar.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 `
 
-// Inicializa os ícones do Lucide
 createIcons({
-  icons: { Calendar, FileText, PieChart, ShieldCheck, ArrowRight, Quote, Check, Sun, Moon }
-});
+  icons: {
+    ArrowRight,
+    Calendar,
+    Check,
+    FileText,
+    Menu,
+    Moon,
+    PieChart,
+    Quote,
+    ShieldCheck,
+    Sparkles,
+    Sun,
+    Users,
+    X,
+  },
+})
 
-// Lógica de Troca de Tema (Claro / Escuro)
-const themeToggleBtn = document.getElementById('theme-toggle');
-const htmlElement = document.documentElement;
+const htmlElement = document.documentElement
+const themeButtons = [
+  document.getElementById('theme-toggle'),
+  document.getElementById('mobile-theme-toggle'),
+].filter(Boolean) as HTMLElement[]
 
-// Verifica se há um tema salvo, ou usa a preferência do sistema
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  htmlElement.setAttribute('data-theme', savedTheme);
+const savedTheme = localStorage.getItem('theme')
+if (savedTheme === 'dark' || savedTheme === 'light') {
+  htmlElement.setAttribute('data-theme', savedTheme)
 } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  htmlElement.setAttribute('data-theme', 'dark');
+  htmlElement.setAttribute('data-theme', 'dark')
 }
 
-// Evento de clique no botão
-themeToggleBtn?.addEventListener('click', () => {
-  const currentTheme = htmlElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  htmlElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});
+const toggleTheme = () => {
+  const currentTheme = htmlElement.getAttribute('data-theme')
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+  htmlElement.setAttribute('data-theme', newTheme)
+  localStorage.setItem('theme', newTheme)
+}
+
+themeButtons.forEach((button) => button.addEventListener('click', toggleTheme))
+
+const menuToggle = document.getElementById('menu-toggle')
+const mobileMenu = document.getElementById('mobile-menu')
+
+const setMobileMenu = (open: boolean) => {
+  mobileMenu?.classList.toggle('open', open)
+  menuToggle?.classList.toggle('open', open)
+  menuToggle?.setAttribute('aria-expanded', String(open))
+  mobileMenu?.setAttribute('aria-hidden', String(!open))
+}
+
+menuToggle?.addEventListener('click', () => {
+  setMobileMenu(!mobileMenu?.classList.contains('open'))
+})
+
+document.querySelectorAll<HTMLAnchorElement>('.mobile-menu a').forEach((link) => {
+  link.addEventListener('click', () => setMobileMenu(false))
+})
