@@ -2,7 +2,7 @@ import { renderSiteHeader } from '../../components/site-header'
 import { renderSiteFooter } from '../../components/site-footer'
 
 const APP_URL = 'https://app.eclin.xyz'
-const LOGIN_URL = `${APP_URL}/login`
+// const LOGIN_URL = `${APP_URL}/login`
 const REGISTER_URL = `${APP_URL}/register`
 
 export function renderHomePage(): string {
